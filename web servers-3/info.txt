@@ -1,0 +1,28 @@
+HTTP Requests parts
+  METHOD
+  PATH
+  BODY
+  HEADERS
+
+
+HTTP RESPONSES parts
+  HEADERS
+  BODY
+  STATUS CODE
+
+
+Same Origin Policy is apply by the browser
+  -->> doesn't allowed a page to make requests to other origins 
+  writes (POST/PUT) are allowed in Same Origin Policy 
+  applies only to scripts and not statis resources like HTML link
+
+  Origin is the combination of
+    Protocol  -->> https://
+    Host      -->> www.google.com/maps
+    Port      -->> :443
+
+
+CORS - Cross Origin Resource Sharing
+  works by whitelisting, allowing a set of origins
+  access-control-allow-origin: * -->> set on the response 
+                                      headers of the server who owns the data

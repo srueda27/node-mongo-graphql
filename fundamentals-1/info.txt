@@ -1,0 +1,44 @@
+JS is a Synchronous langauge that allowed us to code 
+  asynchronous programs by the use of != libraries
+
+
+Libuv manages the event loop of async I/O 
+  the event loop has 4 threads on the Thread Pool
+  Libuv uses the OS kernel to make async tasks 
+    to avoid using the Thread Pool 
+
+
+Callback Queue are executed in FIFO order 
+
+
+There are several Callback Queues one for each phase of the Event Loop
+  Event Loop Phases
+    Timers
+    I/O callbacks
+    setImmediate
+    Close callbacks -->> close a file o network connection
+
+
+    Timers 
+      setInvertal -->> executes a function repeatedly, every set of time
+        needs to be stopped by clearInterval() function
+      serTimeout
+
+
+Node best at servers
+  talking to databases
+  serving data
+  coordinating with other servers like email or auth
+  bassically when is Input and Output the main operations type
+
+Node is not best at processor heavy computations like  
+  Machine Learning
+  Video Processing
+
+
+Module is a file that exports some functionality
+Package is a collection of modules 
+
+
+npm audit
+  npm audit fix 
