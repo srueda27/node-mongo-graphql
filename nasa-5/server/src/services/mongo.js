@@ -1,6 +1,7 @@
+require("dotenv").config();
 const mongoose = require('mongoose');
 
-const MONGO_URL = 'mongodb+srv://nada-api:H1RWmiVAEFGB8Tt8@nasacluster.ga5zg.mongodb.net/nasa?retryWrites=true&w=majority';
+const MONGO_URL = `mongodb+srv://nada-api:${process.env.MONGO_PASSWORD}@nasacluster.ga5zg.mongodb.net/nasa?retryWrites=true&w=majority`;
 
 mongoose.connection.once('open', () => {
   console.log('MongoDB connection ready!!');
