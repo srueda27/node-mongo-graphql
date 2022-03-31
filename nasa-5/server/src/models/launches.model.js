@@ -1,21 +1,8 @@
 const axios = require('axios');
-const launches = require('./launches.mongo');
+const launchesDatabase = require('./launches.mongo');
 const planets = require('./planets.mongo');
 
 const DEFAULT_FLIGHT_NUMBER = 100;
-
-const launch = {
-  flightNumber: 100,
-  mission: 'Test',
-  rocket: 'Explorer',
-  launchDate: new Date('12/27/2030'),
-  target: 'Kepler-442 b',
-  customers: ['ZTM', 'NASA'],
-  upcoming: true,
-  success: true
-}
-
-saveLaunch(launch);
 
 const SPACEX_URL = 'https://api.spacexdata.com/v4/launches/query';
 
@@ -27,7 +14,7 @@ async function loadLaunchesData() {
   });
 
   if (firstLaunch) {
-    console.log('Launches Loaded')
+    console.log('Launches Loaded');
 
     return;
   }
@@ -82,15 +69,21 @@ async function loadLaunchesData() {
   console.log('Launches Loaded')
 }
 
-async function getAllLaunches() {
-  return await launches.find({}, {
-    '_id': 0,
-    '__v': 0
-  });
+async function getAllLaunches(skip, limit) {
+  return await launchesDatabase
+    .find({}, {
+      '_id': 0,
+      '__v': 0
+    })
+    .sort({
+      flightNumber: 'asc'
+    })
+    .skip(skip)
+    .limit(limit);
 }
 
 async function saveLaunch(launch) {
-  await launches.findOneAndUpdate({
+  await launchesDatabase.findOneAndUpdate({
     flightNumber: launch.flightNumber
   },
     launch, {
@@ -99,7 +92,7 @@ async function saveLaunch(launch) {
 }
 
 async function getLatestFlightNumber() {
-  const latestLaunch = await launches.findOne().sort('-flightNumber');
+  const latestLaunch = await launchesDatabase.findOne().sort('-flightNumber');
 
   if (latestLaunch) {
     return latestLaunch.flightNumber;
@@ -130,7 +123,7 @@ async function scheduleNewLaunch(launch) {
 }
 
 async function findLaunch(filter) {
-  return await launches.findOne(filter)
+  return await launchesDatabase.findOne(filter)
 }
 
 async function existsLaunchWithId(launchId) {
@@ -140,7 +133,7 @@ async function existsLaunchWithId(launchId) {
 }
 
 async function abortLaunchById(launchId) {
-  const aborted = await launches.updateOne({
+  const aborted = await launchesDatabase.updateOne({
     flightNumber: launchId
   }, {
     upcoming: false,
