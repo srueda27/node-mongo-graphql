@@ -1,0 +1,30 @@
+Continuous Integration
+  Frecuently commiting code to a share depository
+  CI Server
+    Can Build -> Test the code to verify it works -> merge into the main branch
+  CircleCi
+  TravisCi
+  Jenkins
+  Github Actions
+
+
+
+Continuous Delivery
+  Checks the code works in production 
+  Includes UI tests
+  QA Team runs the app before is send to end-user
+  It leaves a code ready to deploy but not necessarly deploys the code right away
+  The deployment is manual
+
+
+
+Continuous Deployment
+  The goal to Automates Continuous Delivery
+
+
+
+CI/CD Pipeline
+  Source      git push
+  Build       compile -> docker build
+  Test        smoke -> unit -> integration
+  Deploy      staging -> QA -> production
