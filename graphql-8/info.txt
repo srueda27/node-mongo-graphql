@@ -1,0 +1,22 @@
+Under-fetching
+  a request doesn't fill all the needs, it doesn't fetch all the data needed
+
+Over-fecthing
+  when the server response with a lot more info than it is needed
+    so there is a need to filter the data
+
+
+
+Advantages
+  is stateless -> allows the creation of clusters
+  No Under-fetching
+  No Over-fecthing
+  Schemas and types
+  Speeds up development
+
+
+
+Disadvantages
+  Flexibility adds complexity at first
+  Difficult to cache -> the same request can have be send multiple times
+  Not RESTful
